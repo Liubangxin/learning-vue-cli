@@ -1,28 +1,53 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <app-header></app-header>
+    <users v-bind:users="users" v-bind:title="title"></users>
+    <!-- <users v-bind:users="users"></users> -->
+    <app-footer v-on:changeTitle="updateTitle($event)"></app-footer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
 
+// 局部注册组件
+import Users from './components/Users'
+import Header from './components/Header'
+import Footer from './components/Footer'
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return {
+      title: "这是我的第一个Vue脚手架项目",
+      users: [
+        { name: "Tom", positions: "java开发", show: false },
+        { name: "Tom", positions: "java开发", show: false },
+        { name: "Tom", positions: "java开发", show: false },
+        { name: "Tom", positions: "java开发", show: false },
+        { name: "Tom", positions: "java开发", show: false },
+        { name: "Tom", positions: "java开发", show: false },
+        { name: "Tom", positions: "java开发", show: false },
+        { name: "Tom", positions: "java开发", show: false },
+        { name: "Tom", positions: "java开发", show: false },
+        { name: "Tom", positions: "java开发", show: false }
+      ]
+    }
+  },
+  components:{
+    // "users": Users
+    "users": Users,
+    "app-header": Header,
+    'app-footer': Footer
+  },
+  methods: {
+    updateTitle: function(title){
+      this.title = title;
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+h1{
+  color: purple;
 }
 </style>
